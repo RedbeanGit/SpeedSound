@@ -43,12 +43,12 @@ class MainActivity : AppCompatActivity() {
     private val permissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
-        val granted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true
+        val locationGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true
                 || permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
-        if (granted) {
+        if (locationGranted) {
             startSpeedService()
         } else {
-            // Permission denied: revert toggle
+            // Location denied: revert toggle (notification denial is non-blocking)
             settings.isEnabled = false
             updatingSliders = true
             binding.switchService.isChecked = false
@@ -207,13 +207,26 @@ class MainActivity : AppCompatActivity() {
     // ── Service control ───────────────────────────────────────────────────────
 
     private fun requestPermissionOrStart() {
-        val fine = Manifest.permission.ACCESS_FINE_LOCATION
+        val fine   = Manifest.permission.ACCESS_FINE_LOCATION
         val coarse = Manifest.permission.ACCESS_COARSE_LOCATION
-        val alreadyGranted =
-            ContextCompat.checkSelfPermission(this, fine) == PackageManager.PERMISSION_GRANTED
-                    || ContextCompat.checkSelfPermission(this, coarse) == PackageManager.PERMISSION_GRANTED
-        if (alreadyGranted) startSpeedService()
-        else permissionLauncher.launch(arrayOf(fine, coarse))
+        val locationGranted =
+            ContextCompat.checkSelfPermission(this, fine)   == PackageManager.PERMISSION_GRANTED
+         || ContextCompat.checkSelfPermission(this, coarse) == PackageManager.PERMISSION_GRANTED
+
+        val permissionsToRequest = buildList {
+            if (!locationGranted) { add(fine); add(coarse) }
+            // POST_NOTIFICATIONS is a runtime permission from Android 13 (API 33)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val notifPerm = Manifest.permission.POST_NOTIFICATIONS
+                if (ContextCompat.checkSelfPermission(this@MainActivity, notifPerm)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    add(notifPerm)
+                }
+            }
+        }.toTypedArray()
+
+        if (permissionsToRequest.isEmpty()) startSpeedService()
+        else permissionLauncher.launch(permissionsToRequest)
     }
 
     private fun startSpeedService() {
