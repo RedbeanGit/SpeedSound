@@ -1,30 +1,31 @@
 <resources>
     <string name="app_name">SpeedSound</string>
-    <string name="subtitle">Volume adaptatif à la vitesse</string>
+    <string name="subtitle">Adaptive volume by speed</string>
 
     <!-- Toggle card -->
-    <string name="label_service">Contrôle automatique</string>
-    <string name="status_active">En cours d\'exécution…</string>
-    <string name="status_inactive">Désactivé</string>
+    <string name="label_service">Automatic control</string>
+    <string name="status_active">Running…</string>
+    <string name="status_inactive">Disabled</string>
 
     <!-- Settings -->
-    <string name="settings_title">Paramètres</string>
+    <string name="settings_title">Settings</string>
 
-    <string name="label_sensitivity">Sensibilité</string>
-    <string name="hint_sensitivity">À 1×, le volume maximal est atteint à la vitesse de référence</string>
+    <string name="label_sensitivity">Sensitivity</string>
+    <string name="hint_sensitivity">At 1×, max volume is reached at the reference speed</string>
 
-    <string name="label_max_speed">Vitesse de référence</string>
-    <string name="hint_max_speed">Vitesse à partir de laquelle le volume maximal est appliqué</string>
+    <string name="label_max_speed">Reference speed</string>
+    <string name="hint_max_speed">Speed at which maximum volume is applied</string>
 
-    <string name="label_min_volume">Volume minimum</string>
-    <string name="hint_min_volume">Volume appliqué à l\'arrêt complet</string>
+    <string name="label_min_volume">Minimum volume</string>
+    <string name="hint_min_volume">Volume applied when fully stopped</string>
 
-    <string name="label_max_volume">Volume maximum</string>
-    <string name="hint_max_volume">Volume maximal que l\'app peut atteindre</string>
+    <string name="label_max_volume">Maximum volume</string>
+    <string name="hint_max_volume">Maximum volume the app can reach</string>
 
     <!-- Notification -->
-    <string name="notif_title">SpeedSound actif</string>
-    <string name="notif_starting">Démarrage…</string>
-    <string name="notif_channel_desc">Contrôle du volume selon la vitesse GPS</string>
-    <string name="notif_status">%1$.1f km/h • Volume : %2$d%%</string>
+    <string name="notif_title">SpeedSound active</string>
+    <string name="notif_starting">Starting…</string>
+    <string name="notif_channel_desc">GPS speed-based volume control</string>
+    <string name="notif_status">%1$.1f km/h • Volume: %2$d%%</string>
 </resources>
+
