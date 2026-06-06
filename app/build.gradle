@@ -15,8 +15,23 @@ android {
         versionName "1.0"
     }
 
+    signingConfigs {
+        release {
+            // Values are injected by the CI workflow via environment variables.
+            // For local builds, use Android Studio: Build → Generate Signed APK.
+            storeFile     file(System.getenv("SIGNING_STORE_FILE") ?: "/dev/null")
+            storePassword System.getenv("SIGNING_STORE_PASSWORD") ?: ""
+            keyAlias      System.getenv("SIGNING_KEY_ALIAS")       ?: ""
+            keyPassword   System.getenv("SIGNING_KEY_PASSWORD")    ?: ""
+        }
+    }
+
     buildTypes {
         release {
+            // Apply signing config only when the keystore path is set
+            if (System.getenv("SIGNING_STORE_FILE")) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
