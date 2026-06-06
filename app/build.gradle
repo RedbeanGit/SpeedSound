@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.speedsound'
+    namespace 'fr.redbean.speedsound'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.speedsound"
+        applicationId "fr.redbean.speedsound"
         minSdk 26
         targetSdk 35
         versionCode 1
@@ -69,4 +69,11 @@ dependencies {
     testImplementation 'org.mockito.kotlin:mockito-kotlin:5.4.0'
     testImplementation 'org.robolectric:robolectric:4.13'
     testImplementation 'androidx.test:core-ktx:1.6.1'
+}
+
+// Rename output APK to speedsound-vVERSION.apk
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "speedsound-v${variant.versionName}.apk"
+    }
 }

@@ -1,4 +1,4 @@
-package com.speedsound
+package fr.redbean.speedsound
 
 /**
  * Maps a GPS speed (km/h) to a target volume fraction [0.0, 1.0].

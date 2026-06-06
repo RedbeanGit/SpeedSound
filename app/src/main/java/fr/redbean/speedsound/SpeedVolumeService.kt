@@ -1,4 +1,4 @@
-package com.speedsound
+package fr.redbean.speedsound
 
 import android.app.Notification
 import android.app.NotificationChannel

@@ -1,4 +1,4 @@
-package com.speedsound
+package fr.redbean.speedsound
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -17,7 +17,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.speedsound.databinding.ActivityMainBinding
+import fr.redbean.speedsound.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

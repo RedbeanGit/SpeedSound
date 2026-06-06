@@ -1,4 +1,4 @@
-package com.speedsound
+package fr.redbean.speedsound
 
 import android.content.Context
 import android.content.SharedPreferences

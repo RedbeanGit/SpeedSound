@@ -1,4 +1,4 @@
-package com.speedsound
+package fr.redbean.speedsound
 
 import org.junit.Assert.*
 import org.junit.Before

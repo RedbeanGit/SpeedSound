@@ -1,4 +1,4 @@
-package com.speedsound
+package fr.redbean.speedsound
 
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.*
